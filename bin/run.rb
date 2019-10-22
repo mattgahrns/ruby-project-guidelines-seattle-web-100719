@@ -268,13 +268,15 @@ def view_poster
 end
 
 def curr_over_one_hundred_million_box_office
-    res = nil
+    res = []
     curr_favorites.each do |fav|
-        res = Movie.where("id = ?", fav.movie_id).map do |movie|
-            movie.boxoffice
+        Movie.where("id = ?", fav.movie_id).each do |movie|
+            res << movie.boxoffice
         end
     end
-    res
+    res.delete_if{|earnings| earnings == "N/A"}
+    puts res
+
 end
 
 
@@ -290,7 +292,7 @@ while input != "exit" do
     puts "3. Add a movie to your favorites"
     puts "4. List your favorite movies"
     puts "5. Find and view a movie poster in your default browser"
-    puts "6. Show favorite movies that earned over $100 million"
+    puts "6. Show favorite movies that earned over $100 million at the box office"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
