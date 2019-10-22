@@ -113,7 +113,11 @@ def create_movie_by_title
         response = HTTParty.get(url)
         res = response.parsed_response
     end
-    movie = create_movie(res)
+    if Movie.find_by(title: new_movie(res).title) == nil
+        movie = create_movie(res)
+    else
+        movie = Movie.find_by(title: new_movie(res).title)
+    end
     movie
 end
 
@@ -130,7 +134,11 @@ def create_movie_by_imdb_id
         response = HTTParty.get(url)
         res = response.parsed_response
     end
-    movie = create_movie(res)
+    if Movie.find_by(title: new_movie(res).title) == nil
+        movie = create_movie(res)
+    else
+        movie = Movie.find_by(title: new_movie(res).title)
+    end
     movie
 end
 
