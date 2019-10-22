@@ -46,7 +46,7 @@ def find_movie_by_imdb_id
         res = response.parsed_response
     end
     movie = new_movie(res)
-    movie
+    movie.title
 end
 
 def new_movie(res)
@@ -139,6 +139,56 @@ def add_movie_to_favorites
 
 end
 
+def display_movie(movie)
+    puts "Title: #{movie.title}"
+    puts "Year: #{movie.year}"
+    puts "Rated: #{movie.rated}"
+    puts "Released: #{movie.released}"
+    puts "Runtime: #{movie.runtime}"
+    puts "Genre: #{movie.genre}"
+    puts "Director: #{movie.director}"
+    puts "Writer: #{movie.writer}"
+    puts "Stars: #{movie.actors}"
+    puts "Plot: #{movie.plot}"
+    puts "Langauge: #{movie.language}"
+    puts "Country: #{movie.country}"
+    puts "Awards: #{movie.awards}"
+    puts "Poster: #{movie.poster}"
+    puts "Metascore: #{movie.metascore}"
+    puts "IMDb rating: #{movie.imdbrating}"
+    puts "IMDb votes: #{movie.imdbvotes}"
+    puts "IMDb id: #{movie.imdbid}"
+    puts "DVD released: #{movie.dvd}"
+    puts "Box office earnings: #{movie.boxoffice}"
+    puts "Production: #{movie.production}"
+    puts "Website: #{movie.website}"
+end
+
+def display_movie_with_id(movie)
+    puts "ID: #{movie.id}"
+    puts "Title: #{movie.title}"
+    puts "Year: #{movie.year}"
+    puts "Rated: #{movie.rated}"
+    puts "Released: #{movie.released}"
+    puts "Runtime: #{movie.runtime}"
+    puts "Genre: #{movie.genre}"
+    puts "Director: #{movie.director}"
+    puts "Writer: #{movie.writer}"
+    puts "Stars: #{movie.actors}"
+    puts "Plot: #{movie.plot}"
+    puts "Langauge: #{movie.language}"
+    puts "Country: #{movie.country}"
+    puts "Awards: #{movie.awards}"
+    puts "Poster: #{movie.poster}"
+    puts "Metascore: #{movie.metascore}"
+    puts "IMDb rating: #{movie.imdbrating}"
+    puts "IMDb votes: #{movie.imdbvotes}"
+    puts "IMDb id: #{movie.imdbid}"
+    puts "DVD released: #{movie.dvd}"
+    puts "Box office earnings: #{movie.boxoffice}"
+    puts "Production: #{movie.production}"
+    puts "Website: #{movie.website}"
+end
 
 
 puts "HELLO WORLD"
