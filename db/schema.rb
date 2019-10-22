@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191022164851) do
+ActiveRecord::Schema.define(version: 2019_10_22_164851) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20191022164851) do
     t.string "imdbrating"
     t.string "imdbvotes"
     t.string "imdbid"
-    t.string "type"
     t.string "dvd"
     t.string "boxoffice"
     t.string "production"

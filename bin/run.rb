@@ -1,6 +1,7 @@
 require 'pry'
 require 'httparty'
 require_relative '../config/environment'
+require_all '../app/models'
 
 currUser = nil
 
