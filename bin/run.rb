@@ -6,13 +6,13 @@ currUser = nil
 def find_or_create_user_by_username
     puts "To start enter your username or create one and press enter to sign up:"
     username = gets.chomp
-    User.find_by(username: username).each do |user|
-        if user.username == username
-            currUser = user
-        else
-            currUser = User.create(username: username)
-        end
+    if User.find_by(username: username) == nil
+        User.create(username: username)
+        currUser = User.find_by(username: username)
+    else
+        currUser = User.find_by(username: username)
     end
+    currUser
 end
 
 def find_movie_by_title
@@ -67,5 +67,4 @@ end
 
 
 puts "HELLO WORLD"
-Pry.start
-0
+puts find_or_create_user_by_username
