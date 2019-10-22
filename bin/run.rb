@@ -262,13 +262,12 @@ def display_curr_favorites
     end
 end
 
-def curr_over_fifty_million_box_office
-
-end
-
 def view_poster
     puts "Which movie poster would you like to see?"
-    find_movie_by_title
+    Launchy.open(find_movie_by_title.poster)
+end
+
+def curr_over_fifty_million_box_office
 
 end
 
@@ -284,6 +283,7 @@ while input != "exit" do
     puts "2. Find a movie by IMDb ID"
     puts "3. Add a movie to your favorites"
     puts "4. List your favorite movies"
+    puts "5. Find and view a movie poster in your default browser"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
@@ -294,6 +294,8 @@ while input != "exit" do
         add_movie_to_favorites
     elsif input == "4"
         display_curr_favorites
+    elsif input == "5"
+        view_poster
     elsif input == "exit"
         puts "Goodbye!"
     else
