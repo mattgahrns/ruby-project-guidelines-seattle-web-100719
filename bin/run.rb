@@ -1,18 +1,17 @@
 require_relative '../config/environment'
-#require_all '../app/models'
 
-currUser = nil
+$currUser = nil
 
 def find_or_create_user_by_username
     puts "To start enter your username or create one and press enter to sign up:"
     username = gets.chomp
     if User.find_by(username: username) == nil
         User.create(username: username)
-        currUser = User.find_by(username: username)
+        $currUser = User.find_by(username: username)
     else
-        currUser = User.find_by(username: username)
+        $currUser = User.find_by(username: username)
     end
-    currUser
+    puts "Welcome #{$currUser.username}!"
 end
 
 def find_movie_by_title
@@ -29,7 +28,7 @@ def find_movie_by_title
         res = response.parsed_response
     end
     movie = new_movie(res)
-    movie
+    display_movie(movie)
 end
 
 def find_movie_by_imdb_id
@@ -46,7 +45,7 @@ def find_movie_by_imdb_id
         res = response.parsed_response
     end
     movie = new_movie(res)
-    movie.title
+    display_movie(movie)
 end
 
 def new_movie(res)
@@ -136,7 +135,7 @@ def create_movie_by_imdb_id
 end
 
 def add_movie_to_favorites
-
+    
 end
 
 def display_movie(movie)
@@ -192,4 +191,5 @@ end
 
 
 puts "HELLO WORLD"
-puts find_movie_by_imdb_id
+Pry.start
+0
