@@ -208,6 +208,23 @@ def display_movie_with_id(movie)
 end
 
 
-puts "HELLO WORLD"
-Pry.start
-0
+puts "Welcom to the OMDb app!"
+find_or_create_user_by_username
+
+input = nil
+while input != "exit" do
+    puts "Please chose a command from below and enter the corresponding number:"
+    puts "1. Find a movie by title"
+    puts "2. Find a movie by IMDb ID"
+    puts "3. Add a movie to your favorites"
+    input = gets.chomp
+    if input == "1"
+        find_movie_by_title
+    elsif input == "2"
+        find_movie_by_imdb_id
+    elsif input == "3"
+        add_movie_to_favorites
+    else
+        puts "Invalid input please try again!"
+    end
+end
