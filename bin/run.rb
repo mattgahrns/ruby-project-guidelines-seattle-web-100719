@@ -207,6 +207,9 @@ def display_movie_with_id(movie)
     puts "Website: #{movie.website}"
 end
 
+def favorites
+    puts Favorite.where("user_id = ?", $currUser.id)
+end
 
 puts "Welcom to the OMDb app!"
 find_or_create_user_by_username
@@ -218,6 +221,7 @@ while input != "exit" do
     puts "1. Find a movie by title"
     puts "2. Find a movie by IMDb ID"
     puts "3. Add a movie to your favorites"
+    puts "4. List your favorite movies"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
@@ -226,6 +230,8 @@ while input != "exit" do
         find_movie_by_imdb_id
     elsif input == "3"
         add_movie_to_favorites
+    elsif input == "4"
+        favorites
     elsif input == "exit"
         puts "Goodbye!"
     else
