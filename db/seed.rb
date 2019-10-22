@@ -4,6 +4,7 @@ responses = []
 urls = []
 
 
+
 urls.each do |url|
     response = HTTParty.get(url)
     responses << response.parsed_response
