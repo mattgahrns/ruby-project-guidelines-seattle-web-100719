@@ -135,7 +135,17 @@ def create_movie_by_imdb_id
 end
 
 def add_movie_to_favorites
-    
+    puts "Add favorite movie by 'IMDb id' or 'title'?"
+    input = gets.chomp
+    if input == "IMDb id" || "id"
+        movie = create_movie_by_title
+        Favorite.create(user_id: $currUser.id, movie_id: movie.id)
+    elsif input == "title" || "Title"
+        movie = create_movie_by_imdb_id
+        Favorite.create(user_id: $currUser.id, movie_id: movie.id)
+    else
+        puts "Invalid input please try again from the menu."
+    end
 end
 
 def display_movie(movie)
