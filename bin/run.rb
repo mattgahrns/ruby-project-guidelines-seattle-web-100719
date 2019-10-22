@@ -208,6 +208,10 @@ def display_movie_with_id(movie)
 end
 
 def favorites
+    Favorite.where("user_id = ?", $currUser.id)
+end
+
+def display_favorites
     count = 0
     puts ""
     puts "#{$currUser.username}'s favorites:"
@@ -220,6 +224,12 @@ def favorites
         end
     end
 end
+
+def over_fifty_million_box_office
+
+end
+
+
 
 puts "Welcom to the OMDb app!"
 find_or_create_user_by_username
@@ -241,7 +251,7 @@ while input != "exit" do
     elsif input == "3"
         add_movie_to_favorites
     elsif input == "4"
-        favorites
+        display_favorites
     elsif input == "exit"
         puts "Goodbye!"
     else
