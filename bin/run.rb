@@ -21,18 +21,32 @@ def find_movie_by_title
     url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
     response = HTTParty.get(url)
     res = response.parsed_response
+    while res["Title"] == nil do
+        puts "Movie not found, please try again!"
+        title = gets.chomp
+        url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
+        response = HTTParty.get(url)
+        res = response.parsed_response
+    end
     movie = new_movie(res)
-    movie.title
+    movie
 end
 
 def find_movie_by_imdb_id
-    puts "Enter the iMDB ID of the movie you wish to find:"
+    puts "Enter the IMDb ID of the movie you wish to find:"
     imdbid = gets.chomp
     url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
     response = HTTParty.get(url)
     res = response.parsed_response
+    while res["Title"] == nil do
+        puts "Movie not found, please try again!"
+        imdbid = gets.chomp
+        url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
+        response = HTTParty.get(url)
+        res = response.parsed_response
+    end
     movie = new_movie(res)
-    movie.title
+    movie
 end
 
 def new_movie(res)
@@ -93,16 +107,30 @@ def create_movie_by_title
     url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
     response = HTTParty.get(url)
     res = response.parsed_response
+    while res["Title"] == nil do
+        puts "Movie not found, please try again!"
+        title = gets.chomp
+        url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
+        response = HTTParty.get(url)
+        res = response.parsed_response
+    end
     movie = create_movie(res)
     movie
 end
 
 def create_movie_by_imdb_id
-    puts "Enter the title of the movie you wish to find:"
+    puts "Enter the IMDb ID of the movie you wish to find:"
     imdbid = gets.chomp
-    url = "http://www.omdbapi.com/?t=#{imdbid}&apikey=5b27a2ad"
+    url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
     response = HTTParty.get(url)
     res = response.parsed_response
+    while res["Title"] == nil do
+        puts "Movie not found, please try again!"
+        imdbid = gets.chomp
+        url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
+        response = HTTParty.get(url)
+        res = response.parsed_response
+    end
     movie = create_movie(res)
     movie
 end
@@ -114,4 +142,4 @@ end
 
 
 puts "HELLO WORLD"
-puts find_or_create_user_by_username
+puts find_movie_by_imdb_id
