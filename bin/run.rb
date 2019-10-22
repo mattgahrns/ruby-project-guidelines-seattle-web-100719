@@ -267,8 +267,14 @@ def view_poster
     Launchy.open(find_movie_by_title.poster)
 end
 
-def curr_over_fifty_million_box_office
-
+def curr_over_one_hundred_million_box_office
+    res = nil
+    curr_favorites.each do |fav|
+        res = Movie.where("id = ?", fav.movie_id).map do |movie|
+            movie.boxoffice
+        end
+    end
+    res
 end
 
 
@@ -284,6 +290,7 @@ while input != "exit" do
     puts "3. Add a movie to your favorites"
     puts "4. List your favorite movies"
     puts "5. Find and view a movie poster in your default browser"
+    puts "6. Show favorite movies that earned over $100 million"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
@@ -296,6 +303,8 @@ while input != "exit" do
         display_curr_favorites
     elsif input == "5"
         view_poster
+    elsif input == "6"
+        curr_over_one_hundred_million_box_office
     elsif input == "exit"
         puts "Goodbye!"
     else
