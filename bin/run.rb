@@ -1,14 +1,12 @@
-require 'pry'
-require 'httparty'
 require_relative '../config/environment'
-require_all '../app/models'
+#require_all '../app/models'
 
 currUser = nil
 
 def find_or_create_user_by_username
     puts "To start enter your username or create one and press enter to sign up:"
     username = gets.chomp
-    User.all.each do |user|
+    User.find_by(username: username).each do |user|
         if user.username == username
             currUser = user
         else
@@ -24,7 +22,17 @@ def find_movie_by_title
     response = HTTParty.get(url)
     res = response.parsed_response
     movie = new_movie(res)
-    movie
+    movie.title
+end
+
+def find_movie_by_imdb_id
+    puts "Enter the iMDB ID of the movie you wish to find:"
+    imdbid = gets.chomp
+    url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
+    response = HTTParty.get(url)
+    res = response.parsed_response
+    movie = new_movie(res)
+    movie.title
 end
 
 def new_movie(res)
