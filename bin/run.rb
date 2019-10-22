@@ -182,7 +182,6 @@ def display_movie(movie)
 end
 
 def display_movie_with_id(movie)
-    puts "ID: #{movie.id}"
     puts "Title: #{movie.title}"
     puts "Year: #{movie.year}"
     puts "Rated: #{movie.rated}"
@@ -205,10 +204,21 @@ def display_movie_with_id(movie)
     puts "Box office earnings: #{movie.boxoffice}"
     puts "Production: #{movie.production}"
     puts "Website: #{movie.website}"
+    puts "ID: #{movie.id}"
 end
 
 def favorites
-    puts Favorite.where("user_id = ?", $currUser.id)
+    count = 0
+    puts ""
+    puts "#{$currUser.username}'s favorites:"
+    Favorite.where("user_id = ?", $currUser.id).each do |fav|
+        Movie.where("id = ?", fav.movie_id).each do |movie|
+            count += 1
+            puts "#{count}) ~~~~~~~~~~~~"
+            display_movie_with_id(movie)
+            puts ""
+        end
+    end
 end
 
 puts "Welcom to the OMDb app!"
