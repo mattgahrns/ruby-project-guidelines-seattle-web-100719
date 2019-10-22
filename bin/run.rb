@@ -1,5 +1,7 @@
 require_relative '../config/environment'
 
+#curr stands for current. i.e. currUser = current user
+
 $currUser = nil
 
 def find_or_create_user_by_username
@@ -225,10 +227,15 @@ def display_curr_favorites
     end
 end
 
-def over_fifty_million_box_office
+def curr_over_fifty_million_box_office
 
 end
 
+def view_poster
+    puts "Which movie poster would you like to see? (Enter movie title)"
+    input = gets.chomp
+    
+end
 
 
 puts "Welcom to the OMDb app!"
@@ -251,7 +258,7 @@ while input != "exit" do
     elsif input == "3"
         add_movie_to_favorites
     elsif input == "4"
-        display_favorites
+        display_curr_favorites
     elsif input == "exit"
         puts "Goodbye!"
     else
