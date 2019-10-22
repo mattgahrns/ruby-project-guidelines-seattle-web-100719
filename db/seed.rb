@@ -34,6 +34,7 @@ responses.each do |response|
     production = response["Production"]
     website = response["Website"]
 
+    Movie.create(title: title, year: year, rated: rated, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: language, country: country, awards: awards, poster: poster, metascore: metascore, imdbrating: imdbrating, imdbvotes: imdbvotes, imdbid: imdbid, type: type, dvd: dvd, boxoffice: boxoffice, production: production, website: website)
 
 
 end
