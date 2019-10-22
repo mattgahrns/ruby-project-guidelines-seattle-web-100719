@@ -207,11 +207,11 @@ def display_movie_with_id(movie)
     puts "ID: #{movie.id}"
 end
 
-def favorites
+def curr_favorites
     Favorite.where("user_id = ?", $currUser.id)
 end
 
-def display_favorites
+def display_curr_favorites
     count = 0
     puts ""
     puts "#{$currUser.username}'s favorites:"
