@@ -145,10 +145,10 @@ end
 def add_movie_to_favorites
     puts "Add favorite movie by 'IMDb id' or 'title'?"
     input = gets.chomp
-    if input == "IMDb id" || "id"
+    if input == "IMDb id" || input == "id"
         movie = create_movie_by_title
         Favorite.create(user_id: $currUser.id, movie_id: movie.id)
-    elsif input == "title" || "Title"
+    elsif input == "title" || input == "Title"
         movie = create_movie_by_imdb_id
         Favorite.create(user_id: $currUser.id, movie_id: movie.id)
     else
