@@ -30,10 +30,44 @@ def find_movie_by_title
         res = response.parsed_response
     end
     movie = new_movie(res)
+    movie
+end
+
+def find_movie_by_title_and_display
+    puts "Enter the title of the movie you wish to find:"
+    title = gets.chomp
+    url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
+    response = HTTParty.get(url)
+    res = response.parsed_response
+    while res["Title"] == nil do
+        puts "Movie not found, please try again!"
+        title = gets.chomp
+        url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
+        response = HTTParty.get(url)
+        res = response.parsed_response
+    end
+    movie = new_movie(res)
     display_movie(movie)
 end
 
 def find_movie_by_imdb_id
+    puts "Enter the IMDb ID of the movie you wish to find:"
+    imdbid = gets.chomp
+    url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
+    response = HTTParty.get(url)
+    res = response.parsed_response
+    while res["Title"] == nil do
+        puts "Movie not found, please try again!"
+        imdbid = gets.chomp
+        url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
+        response = HTTParty.get(url)
+        res = response.parsed_response
+    end
+    movie = new_movie(res)
+    movie
+end
+
+def find_movie_by_imdb_id_and_display
     puts "Enter the IMDb ID of the movie you wish to find:"
     imdbid = gets.chomp
     url = "http://www.omdbapi.com/?i=#{imdbid}&apikey=5b27a2ad"
@@ -159,6 +193,7 @@ def add_movie_to_favorites
 end
 
 def display_movie(movie)
+    puts ""
     puts "Title: #{movie.title}"
     puts "Year: #{movie.year}"
     puts "Rated: #{movie.rated}"
@@ -232,9 +267,9 @@ def curr_over_fifty_million_box_office
 end
 
 def view_poster
-    puts "Which movie poster would you like to see? (Enter movie title)"
-    input = gets.chomp
-    
+    puts "Which movie poster would you like to see?"
+    find_movie_by_title
+
 end
 
 
@@ -252,9 +287,9 @@ while input != "exit" do
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
-        find_movie_by_title
+        find_movie_by_title_and_display
     elsif input == "2"
-        find_movie_by_imdb_id
+        find_movie_by_imdb_id_and_display
     elsif input == "3"
         add_movie_to_favorites
     elsif input == "4"
