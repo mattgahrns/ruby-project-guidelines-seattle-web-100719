@@ -213,10 +213,12 @@ find_or_create_user_by_username
 
 input = nil
 while input != "exit" do
+    puts ""
     puts "Please chose a command from below and enter the corresponding number:"
     puts "1. Find a movie by title"
     puts "2. Find a movie by IMDb ID"
     puts "3. Add a movie to your favorites"
+    puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
         find_movie_by_title
@@ -224,6 +226,8 @@ while input != "exit" do
         find_movie_by_imdb_id
     elsif input == "3"
         add_movie_to_favorites
+    elsif input == "exit"
+        puts "Goodbye!"
     else
         puts "Invalid input please try again!"
     end
