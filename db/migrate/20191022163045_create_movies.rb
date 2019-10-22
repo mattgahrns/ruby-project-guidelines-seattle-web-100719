@@ -19,7 +19,6 @@ class CreateMovies < ActiveRecord::Migration[5.0]
       t.string :imdbrating
       t.string :imdbvotes
       t.string :imdbid
-      t.string :type
       t.string :dvd
       t.string :boxoffice
       t.string :production

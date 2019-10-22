@@ -29,13 +29,12 @@ responses.each do |response|
     imdbrating = response["imdbRating"]
     imdbvotes = response["imdbVotes"]
     imdbid = response["imdbID"]
-    type = response["Type"]
     dvd = response["DVD"]
     boxoffice = response["BoxOffice"]
     production = response["Production"]
     website = response["Website"]
 
-    Movie.create(title: title, year: year, rated: rated, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: language, country: country, awards: awards, poster: poster, metascore: metascore, imdbrating: imdbrating, imdbvotes: imdbvotes, imdbid: imdbid, type: type, dvd: dvd, boxoffice: boxoffice, production: production, website: website)
+    Movie.create(title: title, year: year, rated: rated, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: language, country: country, awards: awards, poster: poster, metascore: metascore, imdbrating: imdbrating, imdbvotes: imdbvotes, imdbid: imdbid, dvd: dvd, boxoffice: boxoffice, production: production, website: website)
 
 
 end

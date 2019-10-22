@@ -1,6 +1,6 @@
-require_relative '../config/environment'
 require 'pry'
 require 'httparty'
+require_relative '../config/environment'
 
 currUser = nil
 
@@ -45,13 +45,12 @@ def new_movie(res)
     imdbrating = res["imdbRating"]
     imdbvotes = res["imdbVotes"]
     imdbid = res["imdbID"]
-    type = res["Type"]
     dvd = res["DVD"]
     boxoffice = res["BoxOffice"]
     production = res["Production"]
     website = res["Website"]
 
-    Movie.new(title: title, year: year, rated: rated, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: language, country: country, awards: awards, poster: poster, metascore: metascore, imdbrating: imdbrating, imdbvotes: imdbvotes, imdbid: imdbid, type: type, dvd: dvd, boxoffice: boxoffice, production: production, website: website)
+    Movie.new(title: title, year: year, rated: rated, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: language, country: country, awards: awards, poster: poster, metascore: metascore, imdbrating: imdbrating, imdbvotes: imdbvotes, imdbid: imdbid, dvd: dvd, boxoffice: boxoffice, production: production, website: website)
 end
 
 
