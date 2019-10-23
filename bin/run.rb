@@ -389,11 +389,12 @@ def sub_menu
     while input != "back" do
         puts ""
         puts "ANALYTICS MENU".colorize(:color => :green, :background => :light_blue)
-        puts "1. Show your favorite movies that earned over $100 million at the box office"
-        puts "2. Show your favorite movies that have over 8 stars on IMDb"
-        puts "3. Show the most popular (favorited) movie overall"
-        puts "4. Show the movie with the most IMDb star ratings"
-        puts "Enter 'back' to return to main menu or 'exit' to close the program."
+        puts "Hello #{$currUser.username}! Please chose a command from below and enter the corresponding number:".light_blue
+        puts "1. Show your favorite movies that earned over $100 million at the box office".cyan
+        puts "2. Show your favorite movies that have over 8 stars on IMDb".cyan
+        puts "3. Show the most popular (favorited) movie overall".cyan
+        puts "4. Show the movie with the most IMDb star ratings".cyan
+        puts "Enter 'back' to return to main menu or 'exit' to close the program.".light_blue
         input = gets.chomp
         if input == "1"
             curr_over_one_hundred_million_box_office
@@ -419,15 +420,15 @@ def main_menu
     while input != "exit" do
         puts ""
         puts " MENU ".colorize(:color => :green, :background => :light_blue)
-        puts "Hello #{$currUser} Please chose a command from below and enter the corresponding number:"
-        puts "1. Find a movie by title"
-        puts "2. Find a movie by IMDb ID"
-        puts "3. Add a movie to your favorites"
-        puts "4. List your favorite movies"
-        puts "5. Find a movie and view its poster in your default browser"
-        puts "6. Find a movie and view its website in your default browser"
-        puts "7. To visit the ANALYTICS MENU"
-        puts "Enter 'exit' to close the program."
+        puts "Hello #{$currUser.username}! Please chose a command from below and enter the corresponding number:".light_blue
+        puts "1. Find a movie by title".cyan
+        puts "2. Find a movie by IMDb ID".cyan
+        puts "3. Add a movie to your favorites".cyan
+        puts "4. List your favorite movies".cyan
+        puts "5. Find a movie and view its poster in your default browser".cyan
+        puts "6. Find a movie and view its website in your default browser".cyan
+        puts "7. To visit the ANALYTICS MENU".cyan
+        puts "Enter 'exit' to close the program.".light_blue
         input = gets.chomp
         if input == "1"
             find_movie_by_title_and_display
