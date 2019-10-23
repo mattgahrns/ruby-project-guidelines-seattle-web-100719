@@ -333,14 +333,21 @@ def most_popular_movie
     Movie.where("id = ?", movie_id).each do |movie|
         puts "The most popular (favorited) movie is:"
         puts movie.title
-        puts ""
     end
 end
 
 def movie_with_most_star_ratings
+    max = 0
+    max_movie = nil
     res = Movie.all
-    res.each{|movie| movie.imdbvotes.split(/[,]+/).join.to_i}
-    puts res
+    res.each do |movie| 
+        if movie.imdbvotes.split(/[,]+/).join.to_i > max
+            max = movie.imdbvotes.split(/[,]+/).join.to_i
+            max_movie = movie
+        end
+    end
+    puts "The movie with the most IMDb star ratings is:"
+    puts "#{max_movie.title} with #{max_movie.imdbvotes} votes!"
 end
 
 
@@ -362,7 +369,7 @@ while input != "exit" do
     puts "6. Show your favorite movies that earned over $100 million at the box office"
     puts "7. Show your favorite movies that have over 8 stars on IMDb"
     puts "8. Show the most popular (favorited) movie overall"
-    puts "9. Show the movie with the most IMDb votes on star rating"
+    puts "9. Show the movie with the most IMDb star ratings"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
