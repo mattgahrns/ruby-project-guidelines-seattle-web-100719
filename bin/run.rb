@@ -400,7 +400,12 @@ def main_menu
     input = nil
     while input != "exit" do
         puts ""
-        puts "MENU"
+        puts "  
+         __  __ ___ _  _ _   _ 
+        |  \/  | __| \| | | | |
+        | |\/| | _|| .` | |_| |
+        |_|  |_|___|_|\_|\___/ 
+                               ".colorize(:color => :light_blue, :background => :red)
         puts "Please chose a command from below and enter the corresponding number:"
         puts "1. Find a movie by title"
         puts "2. Find a movie by IMDb ID"
@@ -448,7 +453,7 @@ end
 
 #CONSOLE------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------
-puts "Welcom to the OMDb command line interface application!"
+puts "Welcome to the OMDb command line interface application!"
 find_or_create_user_by_username
 
 main_menu
