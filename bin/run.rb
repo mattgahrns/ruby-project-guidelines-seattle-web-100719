@@ -372,11 +372,18 @@ def movie_with_most_star_ratings
 end
 
 def find_or_create_user_by_username
+    restart = false
     puts "To start enter your username or create one and press enter to sign up:".cyan
     username = gets.chomp
     if User.find_by(username: username) == nil
         puts "Welcome #{username}! Now please enter a new password:".cyan
         password = STDIN.noecho(&:gets).chomp
+        puts "Confirm password:".cyan
+        password_confirm = STDIN.noecho(&:gets).chomp
+        while password != password_confirm do
+            puts "Password does not match, please try again:".red
+            password_confirm = STDIN.noecho(&:gets).chomp
+        end
         User.create(username: username, password: password)
         $currUser = User.find_by(username: username)
     else
