@@ -6,7 +6,7 @@ require_relative '../config/environment'
 $currUser = nil
 
 def find_or_create_user_by_username
-    puts "To start enter your username or create one and press enter to sign up:"
+    puts "To start enter your username or create one and press enter to sign up:".cyan
     username = gets.chomp
     if User.find_by(username: username) == nil
         User.create(username: username)
