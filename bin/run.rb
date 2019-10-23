@@ -337,8 +337,15 @@ def most_popular_movie
     end
 end
 
+def movie_with_most_star_ratings
+    res = Movie.all
+    res.each{|movie| movie.imdbvotes.split(/[,]+/).join.to_i}
+    puts res
+end
 
 
+#CONSOLE------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------
 puts "Welcom to the OMDb command line interface application!"
 find_or_create_user_by_username
 
@@ -355,6 +362,7 @@ while input != "exit" do
     puts "6. Show your favorite movies that earned over $100 million at the box office"
     puts "7. Show your favorite movies that have over 8 stars on IMDb"
     puts "8. Show the most popular (favorited) movie overall"
+    puts "9. Show the movie with the most IMDb votes on star rating"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
@@ -382,6 +390,8 @@ while input != "exit" do
         curr_over_eight_star_imdb_rating
     elsif input == "8"
         most_popular_movie
+    elsif input == "9"
+        movie_with_most_star_ratings
     elsif input == "exit"
         puts "Goodbye!"
     else
