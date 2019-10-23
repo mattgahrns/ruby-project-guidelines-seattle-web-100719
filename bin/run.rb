@@ -286,6 +286,13 @@ end
 def view_poster
     puts "Which movie poster would you like to see?"
     Launchy.open(find_movie_by_title.poster)
+    puts "Opening..."
+end
+
+def view_website
+    puts "Which movie website would you like to see?"
+    Launchy.open(find_movie_by_title.website)
+    puts "Opening..."
 end
 
 def curr_over_one_hundred_million_box_office
@@ -365,7 +372,8 @@ while input != "exit" do
     puts "2. Find a movie by IMDb ID"
     puts "3. Add a movie to your favorites"
     puts "4. List your favorite movies"
-    puts "5. Find and view a movie poster in your default browser"
+    puts "5. Find a movie and view its poster in your default browser"
+    puts "6. Find a movie and view its website in your default browser"
     puts "6. Show your favorite movies that earned over $100 million at the box office"
     puts "7. Show your favorite movies that have over 8 stars on IMDb"
     puts "8. Show the most popular (favorited) movie overall"
@@ -392,7 +400,7 @@ while input != "exit" do
     elsif input == "5"
         view_poster
     elsif input == "6"
-        curr_over_one_hundred_million_box_office
+        view_website
     elsif input == "7"
         curr_over_eight_star_imdb_rating
     elsif input == "8"
