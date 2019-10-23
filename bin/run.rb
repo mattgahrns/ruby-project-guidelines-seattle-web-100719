@@ -396,55 +396,59 @@ def sub_menu
     end
 end
 
+def main_menu
+    input = nil
+    while input != "exit" do
+        puts ""
+        puts "MENU"
+        puts "Please chose a command from below and enter the corresponding number:"
+        puts "1. Find a movie by title"
+        puts "2. Find a movie by IMDb ID"
+        puts "3. Add a movie to your favorites"
+        puts "4. List your favorite movies"
+        puts "5. Find a movie and view its poster in your default browser"
+        puts "6. Find a movie and view its website in your default browser"
+        puts "7. See more options to run analytics"
+        puts "Enter 'exit' to close the program."
+        input = gets.chomp
+        if input == "1"
+            find_movie_by_title_and_display
+        elsif input == "2"
+            find_movie_by_imdb_id_and_display
+        elsif input == "3"
+            add_movie_to_favorites
+        elsif input == "4"
+            puts "Would you like the list to display all info or just titles?"
+            puts "(Enter 'all' or 'titles')."
+            input2 = gets.chomp
+            if input2 == "all"
+                display_curr_favorites
+            elsif input2 == "titles"
+                display_curr_favorites_titles_only
+            else
+                puts "Invalid input, please try again from the menu."
+            end
+        elsif input == "5"
+            view_poster
+        elsif input == "6"
+            view_website
+        elsif input == "7"
+            temp = sub_menu
+            if temp == "exit"
+                puts "Goodbye!"
+                break
+            end
+        elsif input == "exit"
+            puts "Goodbye!"
+        else
+            puts "Invalid input please try again!"
+        end
+    end
+end
+
 #CONSOLE------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------
 puts "Welcom to the OMDb command line interface application!"
 find_or_create_user_by_username
 
-input = nil
-while input != "exit" do
-    puts ""
-    puts "MENU"
-    puts "Please chose a command from below and enter the corresponding number:"
-    puts "1. Find a movie by title"
-    puts "2. Find a movie by IMDb ID"
-    puts "3. Add a movie to your favorites"
-    puts "4. List your favorite movies"
-    puts "5. Find a movie and view its poster in your default browser"
-    puts "6. Find a movie and view its website in your default browser"
-    puts "7. See more options to run analytics"
-    puts "Enter 'exit' to close the program."
-    input = gets.chomp
-    if input == "1"
-        find_movie_by_title_and_display
-    elsif input == "2"
-        find_movie_by_imdb_id_and_display
-    elsif input == "3"
-        add_movie_to_favorites
-    elsif input == "4"
-        puts "Would you like the list to display all info or just titles?"
-        puts "(Enter 'all' or 'titles')."
-        input2 = gets.chomp
-        if input2 == "all"
-            display_curr_favorites
-        elsif input2 == "titles"
-            display_curr_favorites_titles_only
-        else
-            puts "Invalid input, please try again from the menu."
-        end
-    elsif input == "5"
-        view_poster
-    elsif input == "6"
-        view_website
-    elsif input == "7"
-        temp = sub_menu
-        if temp == "exit"
-            puts "Goodbye!"
-            break
-        end
-    elsif input == "exit"
-        puts "Goodbye!"
-    else
-        puts "Invalid input please try again!"
-    end
-end
+main_menu
