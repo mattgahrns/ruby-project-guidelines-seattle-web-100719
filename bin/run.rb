@@ -405,7 +405,22 @@ def change_password
 end
 
 def clear_favorite
-
+    system "clear"
+    if confirm_password
+        puts "Enter title of movie you wish to unfavorite:".cyan
+        input = gets.chomp
+        if Movie.find_by(title: input)
+            temp_movie = Movie.find_by(title: input)
+            temp_favorite = Favorite.find_by(movie_id: temp_movie.id)
+            Favorite.delete(temp_favorite.id)
+            puts "Movie deleted from favorites".green
+        else
+            puts "Unable to find that movie in your favorites!".red
+        end
+    else
+        puts "Too many log in attempts, signing out...".red
+        return "exit"
+    end
 end
 
 def clear_all_favorites
@@ -522,9 +537,13 @@ def account_menu
                 return "exit"
             end
         elsif input == "3"
-            clear_favorite
+            if clear_favorite == "exit"
+                return "exit"
+            end
         elsif input == "4"
-            clear_all_favorites
+            if clear_all_favorites == "exit"
+                return "exit"
+            end
         elsif input == "back"
             puts "Returning to main menu...".cyan
         elsif input == "exit"
