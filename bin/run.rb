@@ -1,6 +1,7 @@
 require_relative '../config/environment'
 
-#curr stands for current. i.e. currUser = current user
+#curr stands for current. i.e. currUser = current user. curr used at the begining of a method name means 
+#that method only works with the current user's favorites.
 
 $currUser = nil
 
@@ -245,7 +246,13 @@ def display_movie_with_id(movie)
 end
 
 def curr_favorites
-    Favorite.where("user_id = ?", $currUser.id)
+    res = []
+    Favorite.where("user_id = ?", $currUser.id).each do |fav|
+        Movie.where("id = ?", fav.movie_id).each do |movie|
+            res << movie
+        end
+    end
+    res
 end
 
 def display_curr_favorites
@@ -268,14 +275,8 @@ def view_poster
 end
 
 def curr_over_one_hundred_million_box_office
-    res = []
-    curr_favorites.each do |fav|
-        Movie.where("id = ?", fav.movie_id).each do |movie|
-            res << movie
-        end
-    end
+    res = curr_favorites
     res.delete_if{|movie| movie.boxoffice == "N/A"}
-    res_as_ints = []
     res.delete_if{|movie| movie.boxoffice.split(/[$,]+/).join.to_i < 100000000}
     count = 0
     puts "#{$currUser.username}'s favorite movies with over $100 million box office earnings:"
@@ -291,9 +292,13 @@ def curr_over_one_hundred_million_box_office
     end
 end
 
+def curr_over_eight_star_imdb_rating
+    res = []
+    curr_favorites
+end
 
 
-puts "Welcom to the OMDb app!"
+puts "Welcom to the OMDb command line interface application!"
 find_or_create_user_by_username
 
 input = nil
@@ -305,7 +310,8 @@ while input != "exit" do
     puts "3. Add a movie to your favorites"
     puts "4. List your favorite movies"
     puts "5. Find and view a movie poster in your default browser"
-    puts "6. Show favorite movies that earned over $100 million at the box office"
+    puts "6. Show your favorite movies that earned over $100 million at the box office"
+    puts "7. Show your favorite movies that have over 8 stars on IMDb"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
