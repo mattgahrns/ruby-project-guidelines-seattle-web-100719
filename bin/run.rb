@@ -333,15 +333,15 @@ def curr_over_eight_star_imdb_rating
     res = curr_favorites
     res.delete_if{|movie| movie.imdbrating.to_f < 8.0}
     count = 0
-    puts "#{$currUser.username}'s favorite movies with over 8 stars on IMDb:"
+    puts "#{$currUser.username}'s favorite movies with over 8 stars on IMDb:".green
     if res.empty?
-        puts "No favorites have over 8 stars."
+        puts "No favorites have over 8 stars.".red
     else
         res.each do |movie|
             count += 1
-            puts "#{count}) ~~~~~~~~~~~"
-            puts movie.title
-            puts movie.imdbrating
+            puts "#{count}) ~~~~~~~~~~~".colorize(:color => :black, :background => :green)
+            puts movie.title.green
+            puts movie.imdbrating.green
         end
     end
 end
@@ -354,8 +354,8 @@ def most_popular_movie
     temp = Favorite.group(:movie_id).order('count_movie_id DESC').limit(1).count(:movie_id) # => {7=>2}
     movie_id = temp.keys
     Movie.where("id = ?", movie_id).each do |movie|
-        puts "The most popular (favorited) movie is:"
-        puts movie.title
+        puts "The most popular (favorited) movie is:".green
+        puts movie.title.green
     end
 end
 
@@ -369,8 +369,8 @@ def movie_with_most_star_ratings
             max_movie = movie
         end
     end
-    puts "The movie with the most IMDb star ratings is:"
-    puts "#{max_movie.title} with #{max_movie.imdbvotes} votes!"
+    puts "The movie with the most IMDb star ratings is:".green
+    puts "#{max_movie.title} with #{max_movie.imdbvotes} votes!".green
 end
 
 def sub_menu
@@ -414,7 +414,7 @@ def main_menu
         puts "4. List your favorite movies"
         puts "5. Find a movie and view its poster in your default browser"
         puts "6. Find a movie and view its website in your default browser"
-        puts "7. See more options to run analytics"
+        puts "7. To visit the ANALYTICS MENU"
         puts "Enter 'exit' to close the program."
         input = gets.chomp
         if input == "1"
