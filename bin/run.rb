@@ -386,7 +386,22 @@ def change_username
 end
 
 def change_password
-
+    system "clear"
+    if confirm_password
+        puts "Please enter your new password:".cyan
+        password = STDIN.noecho(&:gets).chomp
+        puts "Confirm password:".cyan
+        password_confirm = STDIN.noecho(&:gets).chomp
+        while password != password_confirm do
+            puts "Password does not match, please try again:".red
+            password_confirm = STDIN.noecho(&:gets).chomp
+        end
+        User.update($currUser.id, :password => password)
+        puts "Password change successful!".green
+    else
+        puts "Too many log in attempts, signing out...".red
+        return "exit"
+    end
 end
 
 def clear_favorite
@@ -503,7 +518,9 @@ def account_menu
                 return "exit"
             end
         elsif input == "2"
-            change_password
+            if change_password == "exit"
+                return "exit"
+            end
         elsif input == "3"
             clear_favorite
         elsif input == "4"
