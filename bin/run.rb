@@ -376,7 +376,7 @@ def sub_menu
         puts "2. Show your favorite movies that have over 8 stars on IMDb"
         puts "3. Show the most popular (favorited) movie overall"
         puts "4. Show the movie with the most IMDb star ratings"
-        puts "Type 'back' to return to main menu."
+        puts "Enter 'back' to return to main menu or 'exit' to close the program."
         input = gets.chomp
         if input == "1"
             curr_over_one_hundred_million_box_office
@@ -388,6 +388,8 @@ def sub_menu
             movie_with_most_star_ratings
         elsif input == "back"
             puts "Returning to main menu..."
+        elsif input == "exit"
+            return input
         else
             puts "Invalid input please try again!"
         end
@@ -411,7 +413,7 @@ while input != "exit" do
     puts "5. Find a movie and view its poster in your default browser"
     puts "6. Find a movie and view its website in your default browser"
     puts "7. See more options to run analytics"
-    puts "Type 'exit' to close the program."
+    puts "Enter 'exit' to close the program."
     input = gets.chomp
     if input == "1"
         find_movie_by_title_and_display
@@ -435,7 +437,11 @@ while input != "exit" do
     elsif input == "6"
         view_website
     elsif input == "7"
-        sub_menu
+        temp = sub_menu
+        if temp == "exit"
+            puts "Goodbye!"
+            break
+        end
     elsif input == "exit"
         puts "Goodbye!"
     else
