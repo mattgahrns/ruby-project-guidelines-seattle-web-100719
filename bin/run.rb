@@ -372,7 +372,16 @@ def movie_with_most_star_ratings
 end
 
 def change_username
-
+    system "clear"
+    if confirm_password
+        puts "Please enter your new username:".cyan
+        username = gets.chomp
+        User.update($currUser.id, :username => username)
+        $currUser = User.where(id = $currUser.id)
+    else
+        puts "Too many log in attempts, signing out...".red
+        return "exit"
+    end
 end
 
 def change_password
@@ -388,14 +397,21 @@ def clear_all_favorites
 end
 
 def confirm_password
-    puts "Enter your password to confirm identity:"
+    puts "Enter your password to confirm identity:".cyan
     password = STDIN.noecho(&:gets).chomp
     if password == User.find_by(username: $currUser.username).password
         system "clear"
         return true
     else
-        puts "Invalid password! Please try again.".red
-        confirm_password
+        2.times do 
+            puts "Invalid password! Please try again.".red
+            password = STDIN.noecho(&:gets).chomp
+            if password == User.find_by(username: $currUser.username).password
+                system "clear"
+                return true
+            end
+        end
+        return false
     end
 end
 
@@ -482,7 +498,9 @@ def account_menu
         puts "Enter 'back' to return to main menu or 'exit' to close the program.".light_blue
         input = gets.chomp
         if input == "1"
-            change_username
+            if change_username == "exit"
+                return "exit"
+            end
         elsif input == "2"
             change_password
         elsif input == "3"
