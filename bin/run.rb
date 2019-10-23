@@ -329,7 +329,12 @@ def most_popular_movie
     # GROUP BY movie_id
     # ORDER BY COUNT(movie_id) DESC LIMIT 1
     temp = Favorite.group(:movie_id).order('count_movie_id DESC').limit(1).count(:movie_id) # => {7=>2}
-    puts temp
+    movie_id = temp.keys
+    Movie.where("id = ?", movie_id).each do |movie|
+        puts "The most popular (favorited) movie is:"
+        puts movie.title
+        puts ""
+    end
 end
 
 
