@@ -5,18 +5,6 @@ require_relative '../config/environment'
 
 $currUser = nil
 
-def find_or_create_user_by_username
-    puts "To start enter your username or create one and press enter to sign up:".cyan
-    username = gets.chomp
-    if User.find_by(username: username) == nil
-        User.create(username: username)
-        $currUser = User.find_by(username: username)
-    else
-        $currUser = User.find_by(username: username)
-    end
-    puts "Welcome #{$currUser.username}!".green
-end
-
 def find_movie_by_title
     puts "Enter the title of the movie you wish to find:"
     title = gets.chomp
@@ -383,6 +371,20 @@ def movie_with_most_star_ratings
     puts "#{max_movie.title} with #{max_movie.imdbvotes} votes!".green
 end
 
+def find_or_create_user_by_username
+    puts "To start enter your username or create one and press enter to sign up:".cyan
+    username = gets.chomp
+    if User.find_by(username: username) == nil
+        User.create(username: username)
+        $currUser = User.find_by(username: username)
+    else
+        $currUser = User.find_by(username: username)
+    end
+    puts "Welcome #{$currUser.username}!".green
+    puts "Test enter password:"
+    password = STDIN.noecho(&:gets).chomp
+end
+
 def sub_menu
     input = nil
     system "clear"
@@ -437,8 +439,8 @@ def main_menu
         elsif input == "3"
             add_movie_to_favorites
         elsif input == "4"
-            puts "Would you like the list to display all info or just titles?"
-            puts "(Enter 'all' or 'titles')."
+            puts "Would you like the list to display all info or just titles?".cyan
+            puts "(Enter 'all' or 'titles')".cyan
             input2 = gets.chomp
             if input2 == "all"
                 display_curr_favorites
