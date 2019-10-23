@@ -285,14 +285,24 @@ end
 
 def view_poster
     puts "Which movie poster would you like to see?"
-    Launchy.open(find_movie_by_title.poster)
-    puts "Opening..."
+    movie = find_movie_by_title
+    if movie.poster == "N/A"
+        puts "Sorry this movie does not have a poster on IMDb"
+    else
+        Launchy.open(movie.poster)
+        puts "Opening..."
+    end
 end
 
 def view_website
     puts "Which movie website would you like to see?"
-    Launchy.open(find_movie_by_title.website)
-    puts "Opening..."
+    movie = find_movie_by_title
+    if movie.website == "N/A"
+        puts "Sorry this movie does not have a website listed on IMDb"
+    else
+        Launchy.open(movie.website)
+        puts "Opening..."
+    end
 end
 
 def curr_over_one_hundred_million_box_office
