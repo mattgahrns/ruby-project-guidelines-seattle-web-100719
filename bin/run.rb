@@ -371,7 +371,7 @@ def sub_menu
     input = nil
     while input != "back" do
         puts ""
-        puts "ANALYTICS MENU"
+        puts "ANALYTICS MENU".colorize(:color => :green, :background => :light_blue)
         puts "1. Show your favorite movies that earned over $100 million at the box office"
         puts "2. Show your favorite movies that have over 8 stars on IMDb"
         puts "3. Show the most popular (favorited) movie overall"
@@ -387,11 +387,11 @@ def sub_menu
         elsif input == "4"
             movie_with_most_star_ratings
         elsif input == "back"
-            puts "Returning to main menu..."
+            puts "Returning to main menu...".cyan
         elsif input == "exit"
             return input
         else
-            puts "Invalid input please try again!"
+            puts "Invalid input please try again!".red
         end
     end
 end
@@ -400,12 +400,7 @@ def main_menu
     input = nil
     while input != "exit" do
         puts ""
-        puts "  
-         __  __ ___ _  _ _   _ 
-        |  \/  | __| \| | | | |
-        | |\/| | _|| .` | |_| |
-        |_|  |_|___|_|\_|\___/ 
-                               ".colorize(:color => :light_blue, :background => :red)
+        puts " MENU ".colorize(:color => :green, :background => :light_blue)
         puts "Please chose a command from below and enter the corresponding number:"
         puts "1. Find a movie by title"
         puts "2. Find a movie by IMDb ID"
@@ -431,7 +426,7 @@ def main_menu
             elsif input2 == "titles"
                 display_curr_favorites_titles_only
             else
-                puts "Invalid input, please try again from the menu."
+                puts "Invalid input, please try again from the menu.".red
             end
         elsif input == "5"
             view_poster
@@ -440,13 +435,13 @@ def main_menu
         elsif input == "7"
             temp = sub_menu
             if temp == "exit"
-                puts "Goodbye!"
+                puts "Goodbye!".red
                 break
             end
         elsif input == "exit"
-            puts "Goodbye!"
+            puts "Goodbye!".red
         else
-            puts "Invalid input please try again!"
+            puts "Invalid input please try again!".red
         end
     end
 end
