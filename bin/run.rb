@@ -377,7 +377,8 @@ def change_username
         puts "Please enter your new username:".cyan
         username = gets.chomp
         User.update($currUser.id, :username => username)
-        $currUser = User.where(id = $currUser.id)
+        $currUser.username = username
+        puts "Username change successful!".green
     else
         puts "Too many log in attempts, signing out...".red
         return "exit"
