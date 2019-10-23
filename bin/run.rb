@@ -324,14 +324,14 @@ def curr_over_one_hundred_million_box_office
     end
 end
 
-def curr_over_eight_star_imdb_rating
+def curr_over_n_star_imdb_rating(n)
     res = curr_favorites
-    res.delete_if{|movie| movie.imdbrating.to_f < 8.0}
+    res.delete_if{|movie| movie.imdbrating.to_f < n}
     count = 0
     system "clear"
-    puts "#{$currUser.username}'s favorite movies with over 8 stars on IMDb:".green
+    puts "#{$currUser.username}'s favorite movies with over #{n} stars on IMDb:".green
     if res.empty?
-        puts "No favorites have over 8 stars.".red
+        puts "No favorites have over #{n} stars.".red
     else
         res.each do |movie|
             count += 1
@@ -401,7 +401,7 @@ def sub_menu
         puts "ANALYTICS MENU".colorize(:color => :green, :background => :light_blue)
         puts "Hello #{$currUser.username}! Please chose a command from below and enter the corresponding number:".light_blue
         puts "1. Show your favorite movies that earned over $100 million at the box office".cyan
-        puts "2. Show your favorite movies that have over 8 stars on IMDb".cyan
+        puts "2. Show your favorite movies that have over n stars on IMDb".cyan
         puts "3. Show the most popular (favorited) movie overall".cyan
         puts "4. Show the movie with the most IMDb star ratings".cyan
         puts "Enter 'back' to return to main menu or 'exit' to close the program.".light_blue
@@ -409,7 +409,15 @@ def sub_menu
         if input == "1"
             curr_over_one_hundred_million_box_office
         elsif input == "2"
-            curr_over_eight_star_imdb_rating
+            puts "Enter number of stars (1-10):".cyan
+            input3 = gets.chomp
+            check_if_num = input3.to_f.between?(1,10)
+            while !check_if_num do
+                puts "That is not a number between 1 and 10. Please try again:".red
+                input3 = gets.chomp
+                check_if_num = input3.to_f.between?(1,10)
+            end
+            curr_over_n_star_imdb_rating(input3.to_f)
         elsif input == "3"
             most_popular_movie
         elsif input == "4"
