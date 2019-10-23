@@ -258,7 +258,10 @@ end
 def display_curr_favorites
     count = 0
     puts ""
-    puts "#{$currUser.username}'s favorites:"
+    puts "#{$currUser.username}'s favorites:".green
+    if Favorite.where("user_id = ?", $currUser.id) == []
+        puts "You have no favorites. To add favorites enter '4' at the main menu.".red
+    end
     Favorite.where("user_id = ?", $currUser.id).each do |fav|
         Movie.where("id = ?", fav.movie_id).each do |movie|
             count += 1
@@ -272,7 +275,10 @@ end
 def display_curr_favorites_titles_only
     count = 0
     puts ""
-    puts "#{$currUser.username}'s favorites (titles only):"
+    puts "#{$currUser.username}'s favorites (titles only):".green
+    if Favorite.where("user_id = ?", $currUser.id) == []
+        puts "You have no favorites. To add favorites enter '4' at the main menu.".red
+    end
     Favorite.where("user_id = ?", $currUser.id).each do |fav|
         Movie.where("id = ?", fav.movie_id).each do |movie|
             count += 1
@@ -290,7 +296,7 @@ def view_poster
         puts "Sorry this movie does not have a poster on IMDb"
     else
         Launchy.open(movie.poster)
-        puts "Opening..."
+        puts "Opening...".cyan
     end
 end
 
@@ -301,7 +307,7 @@ def view_website
         puts "Sorry this movie does not have a website listed on IMDb"
     else
         Launchy.open(movie.website)
-        puts "Opening..."
+        puts "Opening...".cyan
     end
 end
 
@@ -310,15 +316,15 @@ def curr_over_one_hundred_million_box_office
     res.delete_if{|movie| movie.boxoffice == "N/A"}
     res.delete_if{|movie| movie.boxoffice.split(/[$,]+/).join.to_i < 100000000}
     count = 0
-    puts "#{$currUser.username}'s favorite movies with over $100 million box office earnings:"
+    puts "#{$currUser.username}'s favorite movies with over $100 million box office earnings:".green
     if res.empty?
-        puts "No favorites earned over $100 million."
+        puts "No favorites earned over $100 million.".red
     else
         res.each do |movie|
             count += 1
-            puts "#{count}) ~~~~~~~~~~~"
-            puts movie.title
-            puts movie.boxoffice
+            puts "#{count}) ~~~~~~~~~~~".colorize(:color => :black, :background => :green)
+            puts movie.title.green
+            puts movie.boxoffice.green
         end
     end
 end
