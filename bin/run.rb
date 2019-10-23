@@ -375,14 +375,22 @@ def find_or_create_user_by_username
     puts "To start enter your username or create one and press enter to sign up:".cyan
     username = gets.chomp
     if User.find_by(username: username) == nil
-        User.create(username: username)
+        puts "Welcome #{username}! Now please enter a new password:".cyan
+        password = STDIN.noecho(&:gets).chomp
+        User.create(username: username, password: password)
         $currUser = User.find_by(username: username)
     else
-        $currUser = User.find_by(username: username)
+        puts "Please enter your password:".cyan
+        password = STDIN.noecho(&:gets).chomp
+        if password == User.find_by(username: username).password
+            puts "Logging in...".cyan
+            $currUser = User.find_by(username: username)
+            puts "Welcome #{$currUser.username}! You are now signed in.".green
+        else
+            puts "Invalid password! Please try signing in again.".red
+            find_or_create_user_by_username
+        end
     end
-    puts "Welcome #{$currUser.username}!".green
-    puts "Test enter password:"
-    password = STDIN.noecho(&:gets).chomp
 end
 
 def sub_menu
