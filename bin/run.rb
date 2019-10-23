@@ -371,6 +371,22 @@ def movie_with_most_star_ratings
     puts "#{max_movie.title} with #{max_movie.imdbvotes} votes!".green
 end
 
+def change_username
+
+end
+
+def change_password
+
+end
+
+def clear_favorite
+
+end
+
+def clear_all_favorites
+
+end
+
 def find_or_create_user_by_username
     restart = false
     puts "To start enter your username or create one and press enter to sign up:".cyan
@@ -400,7 +416,7 @@ def find_or_create_user_by_username
     end
 end
 
-def sub_menu
+def analytics_menu
     input = nil
     system "clear"
     while input != "back" do
@@ -440,6 +456,38 @@ def sub_menu
     end
 end
 
+def account_menu
+    input = nil
+    system "clear"
+    while input != "back" do
+        puts ""
+        puts "ACCOUNT MENU".colorize(:color => :green, :background => :light_blue)
+        puts "Hello #{$currUser.username}! Please chose a command from below and enter the corresponding number:".light_blue
+        puts "1. Change username".cyan
+        puts "2. Change password".cyan
+        puts "3. Remove a movie from your favorites".cyan
+        puts "4. Remove ALL movies from your favorites".cyan
+        puts "Enter 'back' to return to main menu or 'exit' to close the program.".light_blue
+        input = gets.chomp
+        if input == "1"
+            change_username
+        elsif input == "2"
+            change_password
+        elsif input == "3"
+            clear_favorite
+        elsif input == "4"
+            clear_all_favorites
+        elsif input == "back"
+            puts "Returning to main menu...".cyan
+        elsif input == "exit"
+            return input
+        else
+            system "clear"
+            puts "Invalid input please try again!".red
+        end
+    end
+end
+
 def main_menu
     input = nil
     while input != "exit" do
@@ -453,6 +501,7 @@ def main_menu
         puts "5. Find a movie and view its poster in your default browser".cyan
         puts "6. Find a movie and view its website in your default browser".cyan
         puts "7. To visit the ANALYTICS MENU".cyan
+        puts "8. To visit the ACCOUNT MENU".cyan
         puts "Enter 'exit' to close the program.".light_blue
         input = gets.chomp
         if input == "1"
@@ -478,7 +527,15 @@ def main_menu
         elsif input == "6"
             view_website
         elsif input == "7"
-            temp = sub_menu
+            temp = analytics_menu
+            if temp == "exit"
+                puts "Goodbye!".green
+                break
+            else
+                system "clear"
+            end
+        elsif input == "8"
+            temp = account_menu
             if temp == "exit"
                 puts "Goodbye!".green
                 break
