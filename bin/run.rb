@@ -179,7 +179,8 @@ def add_movie_to_favorites
         movie = create_movie_by_title
         Favorite.create(user_id: $currUser.id, movie_id: movie.id)
     else
-        puts "Invalid input please try again from the menu."
+        system "clear"
+        puts "Invalid input please try again from the menu.".red
     end
 end
 
@@ -414,6 +415,9 @@ def clear_favorite
             temp_favorite = Favorite.find_by(movie_id: temp_movie.id)
             Favorite.delete(temp_favorite.id)
             puts "Movie deleted from favorites".green
+            if !Favorite.where(temp_movie.id = movie_id)
+                puts "No more favs for this movie"
+            end
         else
             puts "Unable to find that movie in your favorites!".red
         end
