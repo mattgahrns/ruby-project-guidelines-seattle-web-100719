@@ -369,19 +369,28 @@ end
 
 def sub_menu
     input = nil
-    puts "1. Show your favorite movies that earned over $100 million at the box office"
-    puts "2. Show your favorite movies that have over 8 stars on IMDb"
-    puts "3. Show the most popular (favorited) movie overall"
-    puts "4. Show the movie with the most IMDb star ratings"
-    input gets.chomp
-    if input == "1"
-        curr_over_one_hundred_million_box_office
-    elsif input == "2"
-        curr_over_eight_star_imdb_rating
-    elsif input == "3"
-        most_popular_movie
-    elsif input == "4"
-        movie_with_most_star_ratings
+    while input != "back" do
+        puts ""
+        puts "ANALYTICS MENU"
+        puts "1. Show your favorite movies that earned over $100 million at the box office"
+        puts "2. Show your favorite movies that have over 8 stars on IMDb"
+        puts "3. Show the most popular (favorited) movie overall"
+        puts "4. Show the movie with the most IMDb star ratings"
+        puts "Type 'back' to return to main menu."
+        input = gets.chomp
+        if input == "1"
+            curr_over_one_hundred_million_box_office
+        elsif input == "2"
+            curr_over_eight_star_imdb_rating
+        elsif input == "3"
+            most_popular_movie
+        elsif input == "4"
+            movie_with_most_star_ratings
+        elsif input == "back"
+            puts "Returning to main menu..."
+        else
+            puts "Invalid input please try again!"
+        end
     end
 end
 
