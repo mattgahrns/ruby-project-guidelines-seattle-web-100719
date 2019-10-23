@@ -269,6 +269,20 @@ def display_curr_favorites
     end
 end
 
+def display_curr_favorites_titles_only
+    count = 0
+    puts ""
+    puts "#{$currUser.username}'s favorites (titles only):"
+    Favorite.where("user_id = ?", $currUser.id).each do |fav|
+        Movie.where("id = ?", fav.movie_id).each do |movie|
+            count += 1
+            puts "#{count}) ~~~~~~~~~~~~"
+            puts movie.title
+            puts ""
+        end
+    end
+end
+
 def view_poster
     puts "Which movie poster would you like to see?"
     Launchy.open(find_movie_by_title.poster)
@@ -316,6 +330,7 @@ find_or_create_user_by_username
 input = nil
 while input != "exit" do
     puts ""
+    puts "MENU"
     puts "Please chose a command from below and enter the corresponding number:"
     puts "1. Find a movie by title"
     puts "2. Find a movie by IMDb ID"
@@ -333,7 +348,16 @@ while input != "exit" do
     elsif input == "3"
         add_movie_to_favorites
     elsif input == "4"
-        display_curr_favorites
+        puts "Would you like the list to display all info or just titles?"
+        puts "(Enter 'all' or 'titles')."
+        input2 = gets.chomp
+        if input2 == "all"
+            display_curr_favorites
+        elsif input2 == "titles"
+            display_curr_favorites_titles_only
+        else
+            puts "Invalid input, please try again from the menu."
+        end
     elsif input == "5"
         view_poster
     elsif input == "6"
