@@ -293,8 +293,20 @@ def curr_over_one_hundred_million_box_office
 end
 
 def curr_over_eight_star_imdb_rating
-    res = []
-    curr_favorites
+    res = curr_favorites
+    res.delete_if{|movie| movie.imdbrating.to_f < 8.0}
+    count = 0
+    puts "#{$currUser.username}'s favorite movies with over 8 stars on IMDb:"
+    if res.empty?
+        puts "No favorites have over 8 stars."
+    else
+        res.each do |movie|
+            count += 1
+            puts "#{count}) ~~~~~~~~~~~"
+            puts movie.title
+            puts movie.imdbrating
+        end
+    end
 end
 
 
@@ -326,6 +338,8 @@ while input != "exit" do
         view_poster
     elsif input == "6"
         curr_over_one_hundred_million_box_office
+    elsif input == "7"
+        curr_over_eight_star_imdb_rating
     elsif input == "exit"
         puts "Goodbye!"
     else
