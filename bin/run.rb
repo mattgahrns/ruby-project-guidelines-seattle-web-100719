@@ -195,54 +195,54 @@ end
 
 def display_movie(movie)
     puts ""
-    puts "Title: #{movie.title}"
-    puts "Year: #{movie.year}"
-    puts "Rated: #{movie.rated}"
-    puts "Released: #{movie.released}"
-    puts "Runtime: #{movie.runtime}"
-    puts "Genre: #{movie.genre}"
-    puts "Director: #{movie.director}"
-    puts "Writer: #{movie.writer}"
-    puts "Stars: #{movie.actors}"
-    puts "Plot: #{movie.plot}"
-    puts "Langauge: #{movie.language}"
-    puts "Country: #{movie.country}"
-    puts "Awards: #{movie.awards}"
-    puts "Poster: #{movie.poster}"
-    puts "Metascore: #{movie.metascore}"
-    puts "IMDb rating: #{movie.imdbrating}"
-    puts "IMDb votes: #{movie.imdbvotes}"
-    puts "IMDb id: #{movie.imdbid}"
-    puts "DVD released: #{movie.dvd}"
-    puts "Box office earnings: #{movie.boxoffice}"
-    puts "Production: #{movie.production}"
-    puts "Website: #{movie.website}"
+    puts "Title: #{movie.title}".green
+    puts "Year: #{movie.year}".green
+    puts "Rated: #{movie.rated}".green
+    puts "Released: #{movie.released}".green
+    puts "Runtime: #{movie.runtime}".green
+    puts "Genre: #{movie.genre}".green
+    puts "Director: #{movie.director}".green
+    puts "Writer: #{movie.writer}".green
+    puts "Stars: #{movie.actors}".green
+    puts "Plot: #{movie.plot}".green
+    puts "Langauge: #{movie.language}".green
+    puts "Country: #{movie.country}".green
+    puts "Awards: #{movie.awards}".green
+    puts "Poster: #{movie.poster}".green
+    puts "Metascore: #{movie.metascore}".green
+    puts "IMDb rating: #{movie.imdbrating}".green
+    puts "IMDb votes: #{movie.imdbvotes}".green
+    puts "IMDb id: #{movie.imdbid}".green
+    puts "DVD released: #{movie.dvd}".green
+    puts "Box office earnings: #{movie.boxoffice}".green
+    puts "Production: #{movie.production}".green
+    puts "Website: #{movie.website}".green
 end
 
 def display_movie_with_id(movie)
-    puts "Title: #{movie.title}"
-    puts "Year: #{movie.year}"
-    puts "Rated: #{movie.rated}"
-    puts "Released: #{movie.released}"
-    puts "Runtime: #{movie.runtime}"
-    puts "Genre: #{movie.genre}"
-    puts "Director: #{movie.director}"
-    puts "Writer: #{movie.writer}"
-    puts "Stars: #{movie.actors}"
-    puts "Plot: #{movie.plot}"
-    puts "Langauge: #{movie.language}"
-    puts "Country: #{movie.country}"
-    puts "Awards: #{movie.awards}"
-    puts "Poster: #{movie.poster}"
-    puts "Metascore: #{movie.metascore}"
-    puts "IMDb rating: #{movie.imdbrating}"
-    puts "IMDb votes: #{movie.imdbvotes}"
-    puts "IMDb id: #{movie.imdbid}"
-    puts "DVD released: #{movie.dvd}"
-    puts "Box office earnings: #{movie.boxoffice}"
-    puts "Production: #{movie.production}"
-    puts "Website: #{movie.website}"
-    puts "ID: #{movie.id}"
+    puts "Title: #{movie.title}".green
+    puts "Year: #{movie.year}".green
+    puts "Rated: #{movie.rated}".green
+    puts "Released: #{movie.released}".green
+    puts "Runtime: #{movie.runtime}".green
+    puts "Genre: #{movie.genre}".green
+    puts "Director: #{movie.director}".green
+    puts "Writer: #{movie.writer}".green
+    puts "Stars: #{movie.actors}".green
+    puts "Plot: #{movie.plot}".green
+    puts "Langauge: #{movie.language}".green
+    puts "Country: #{movie.country}".green
+    puts "Awards: #{movie.awards}".green
+    puts "Poster: #{movie.poster}".green
+    puts "Metascore: #{movie.metascore}".green
+    puts "IMDb rating: #{movie.imdbrating}".green
+    puts "IMDb votes: #{movie.imdbvotes}".green
+    puts "IMDb id: #{movie.imdbid}".green
+    puts "DVD released: #{movie.dvd}".green
+    puts "Box office earnings: #{movie.boxoffice}".green
+    puts "Production: #{movie.production}".green
+    puts "Website: #{movie.website}".green
+    puts "ID: #{movie.id}".green
 end
 
 def curr_favorites
@@ -262,7 +262,7 @@ def display_curr_favorites
     Favorite.where("user_id = ?", $currUser.id).each do |fav|
         Movie.where("id = ?", fav.movie_id).each do |movie|
             count += 1
-            puts "#{count}) ~~~~~~~~~~~~"
+            puts "#{count}) ~~~~~~~~~~~~".colorize(:color => :black, :background => :green)
             display_movie_with_id(movie)
             puts ""
         end
@@ -276,8 +276,8 @@ def display_curr_favorites_titles_only
     Favorite.where("user_id = ?", $currUser.id).each do |fav|
         Movie.where("id = ?", fav.movie_id).each do |movie|
             count += 1
-            puts "#{count}) ~~~~~~~~~~~~"
-            puts movie.title
+            puts "#{count}) ~~~~~~~~~~~~".colorize(:color => :black, :background => :green)
+            puts movie.title.green
             puts ""
         end
     end
@@ -423,7 +423,7 @@ def main_menu
             input2 = gets.chomp
             if input2 == "all"
                 display_curr_favorites
-            elsif input2 == "titles"
+            elsif input2 == "titles" || input2 == "title"
                 display_curr_favorites_titles_only
             else
                 puts "Invalid input, please try again from the menu.".red
@@ -435,11 +435,11 @@ def main_menu
         elsif input == "7"
             temp = sub_menu
             if temp == "exit"
-                puts "Goodbye!".red
+                puts "Goodbye!".green
                 break
             end
         elsif input == "exit"
-            puts "Goodbye!".red
+            puts "Goodbye!".green
         else
             puts "Invalid input please try again!".red
         end
