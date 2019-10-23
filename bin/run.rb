@@ -323,6 +323,11 @@ def curr_over_eight_star_imdb_rating
     end
 end
 
+def most_popular_movie
+    Favorite.joins(:movies).where("movie_id = movie.id")
+end
+
+
 
 puts "Welcom to the OMDb command line interface application!"
 find_or_create_user_by_username
