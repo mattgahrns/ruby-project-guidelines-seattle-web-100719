@@ -14,7 +14,7 @@ def find_or_create_user_by_username
     else
         $currUser = User.find_by(username: username)
     end
-    puts "Welcome #{$currUser.username}!"
+    puts "Welcome #{$currUser.username}!".green
 end
 
 def find_movie_by_title
@@ -454,7 +454,7 @@ end
 
 #CONSOLE------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------
-puts "Welcome to the OMDb command line interface application!"
+puts "Welcome to the OMDb command line interface application!".cyan
 find_or_create_user_by_username
 
 main_menu
