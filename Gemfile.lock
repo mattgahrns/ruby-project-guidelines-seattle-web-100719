@@ -28,6 +28,7 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    io-console (0.4.8)
     launchy (2.4.3)
       addressable (~> 2.3)
     method_source (0.9.2)
@@ -76,6 +77,7 @@ DEPENDENCIES
   activerecord (~> 5.2.3)
   colorize
   httparty
+  io-console
   launchy
   pry
   rake
