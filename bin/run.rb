@@ -387,6 +387,18 @@ def clear_all_favorites
 
 end
 
+def confirm_password
+    puts "Enter your password to confirm identity:"
+    password = STDIN.noecho(&:gets).chomp
+    if password == User.find_by(username: $currUser.username).password
+        system "clear"
+        return true
+    else
+        puts "Invalid password! Please try again.".red
+        confirm_password
+    end
+end
+
 def find_or_create_user_by_username
     restart = false
     puts "To start enter your username or create one and press enter to sign up:".cyan
