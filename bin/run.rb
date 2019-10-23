@@ -324,7 +324,12 @@ def curr_over_eight_star_imdb_rating
 end
 
 def most_popular_movie
-    Favorite.joins(:movies).where("movie_id = movie.id")
+    # SELECT movie_id, COUNT(movie_id)
+    # FROM favorites
+    # GROUP BY movie_id
+    # ORDER BY COUNT(movie_id) DESC LIMIT 1
+    temp = Favorite.group(:movie_id).order('count_movie_id DESC').limit(1).count(:movie_id) # => {7=>2}
+    puts temp
 end
 
 
@@ -344,6 +349,7 @@ while input != "exit" do
     puts "5. Find and view a movie poster in your default browser"
     puts "6. Show your favorite movies that earned over $100 million at the box office"
     puts "7. Show your favorite movies that have over 8 stars on IMDb"
+    puts "8. Show the most popular (favorited) movie overall"
     puts "Type 'exit' to close the program."
     input = gets.chomp
     if input == "1"
@@ -369,6 +375,8 @@ while input != "exit" do
         curr_over_one_hundred_million_box_office
     elsif input == "7"
         curr_over_eight_star_imdb_rating
+    elsif input == "8"
+        most_popular_movie
     elsif input == "exit"
         puts "Goodbye!"
     else
