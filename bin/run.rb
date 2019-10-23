@@ -48,6 +48,7 @@ def find_movie_by_title_and_display
         res = response.parsed_response
     end
     movie = new_movie(res)
+    system "clear"
     display_movie(movie)
 end
 
@@ -82,6 +83,7 @@ def find_movie_by_imdb_id_and_display
         res = response.parsed_response
     end
     movie = new_movie(res)
+    system "clear"
     display_movie(movie)
 end
 
@@ -257,6 +259,7 @@ end
 
 def display_curr_favorites
     count = 0
+    system "clear"
     puts ""
     puts "#{$currUser.username}'s favorites:".green
     if Favorite.where("user_id = ?", $currUser.id) == []
@@ -274,6 +277,7 @@ end
 
 def display_curr_favorites_titles_only
     count = 0
+    system "clear"
     puts ""
     puts "#{$currUser.username}'s favorites (titles only):".green
     if Favorite.where("user_id = ?", $currUser.id) == []
@@ -290,6 +294,7 @@ def display_curr_favorites_titles_only
 end
 
 def view_poster
+    system "clear"
     puts "Which movie poster would you like to see?"
     movie = find_movie_by_title
     if movie.poster == "N/A"
@@ -301,6 +306,7 @@ def view_poster
 end
 
 def view_website
+    system "clear"
     puts "Which movie website would you like to see?"
     movie = find_movie_by_title
     if movie.website == "N/A"
@@ -316,6 +322,7 @@ def curr_over_one_hundred_million_box_office
     res.delete_if{|movie| movie.boxoffice == "N/A"}
     res.delete_if{|movie| movie.boxoffice.split(/[$,]+/).join.to_i < 100000000}
     count = 0
+    system "clear"
     puts "#{$currUser.username}'s favorite movies with over $100 million box office earnings:".green
     if res.empty?
         puts "No favorites earned over $100 million.".red
@@ -333,6 +340,7 @@ def curr_over_eight_star_imdb_rating
     res = curr_favorites
     res.delete_if{|movie| movie.imdbrating.to_f < 8.0}
     count = 0
+    system "clear"
     puts "#{$currUser.username}'s favorite movies with over 8 stars on IMDb:".green
     if res.empty?
         puts "No favorites have over 8 stars.".red
@@ -353,6 +361,7 @@ def most_popular_movie
     # ORDER BY COUNT(movie_id) DESC LIMIT 1
     temp = Favorite.group(:movie_id).order('count_movie_id DESC').limit(1).count(:movie_id) # => {7=>2}
     movie_id = temp.keys
+    system "clear"
     Movie.where("id = ?", movie_id).each do |movie|
         puts "The most popular (favorited) movie is:".green
         puts movie.title.green
@@ -363,6 +372,7 @@ def movie_with_most_star_ratings
     max = 0
     max_movie = nil
     res = Movie.all
+    system "clear"
     res.each do |movie| 
         if movie.imdbvotes.split(/[,]+/).join.to_i > max
             max = movie.imdbvotes.split(/[,]+/).join.to_i
@@ -375,6 +385,7 @@ end
 
 def sub_menu
     input = nil
+    system "clear"
     while input != "back" do
         puts ""
         puts "ANALYTICS MENU".colorize(:color => :green, :background => :light_blue)
@@ -397,6 +408,7 @@ def sub_menu
         elsif input == "exit"
             return input
         else
+            system "clear"
             puts "Invalid input please try again!".red
         end
     end
@@ -407,7 +419,7 @@ def main_menu
     while input != "exit" do
         puts ""
         puts " MENU ".colorize(:color => :green, :background => :light_blue)
-        puts "Please chose a command from below and enter the corresponding number:"
+        puts "Hello #{$currUser} Please chose a command from below and enter the corresponding number:"
         puts "1. Find a movie by title"
         puts "2. Find a movie by IMDb ID"
         puts "3. Add a movie to your favorites"
@@ -432,6 +444,7 @@ def main_menu
             elsif input2 == "titles" || input2 == "title"
                 display_curr_favorites_titles_only
             else
+                system "clear"
                 puts "Invalid input, please try again from the menu.".red
             end
         elsif input == "5"
@@ -443,10 +456,13 @@ def main_menu
             if temp == "exit"
                 puts "Goodbye!".green
                 break
+            else
+                system "clear"
             end
         elsif input == "exit"
             puts "Goodbye!".green
         else
+            system "clear"
             puts "Invalid input please try again!".red
         end
     end
@@ -454,7 +470,10 @@ end
 
 #CONSOLE------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------
+system "clear"
+
 puts "Welcome to the OMDb command line interface application!".cyan
+
 find_or_create_user_by_username
 
 main_menu
