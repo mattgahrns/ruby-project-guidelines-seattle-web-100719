@@ -271,13 +271,23 @@ def curr_over_one_hundred_million_box_office
     res = []
     curr_favorites.each do |fav|
         Movie.where("id = ?", fav.movie_id).each do |movie|
-            res << movie.boxoffice
+            res << movie
         end
     end
-    res.delete_if{|earnings| earnings == "N/A"}
-    puts res
-
+    res.delete_if{|movie| movie.boxoffice == "N/A"}
+    #.boxoffice.split(/[$,]+/).join.to_i
+    res_as_ints = []
+    res.delete_if{|movie| movie.boxoffice.split(/[$,]+/).join.to_i < 100000000}
+    count = 0
+    puts "#{$currUser.username}'s favorite movies with over $100 million box office earnings:"
+    res.each do |movie|
+        count += 1
+        puts "#{count}) ~~~~~~~~~~~"
+        puts movie.title
+        puts movie.boxoffice
+    end
 end
+
 
 
 puts "Welcom to the OMDb app!"
