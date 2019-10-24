@@ -174,14 +174,22 @@ def add_movie_to_favorites
     input = gets.chomp
     if input == "IMDb id" || input == "id"
         movie = create_movie_by_imdb_id
-        Favorite.create(user_id: $currUser.id, movie_id: movie.id)
-        system "clear"
-        "Movie added to favorites!".green
+        if Favorite.find_by(user_id: $currUser.id, movie_id: movie.id)
+            puts "You already have that movie in your favorites!".cyan
+        else
+            Favorite.create(user_id: $currUser.id, movie_id: movie.id)
+            system "clear"
+            "Movie added to favorites!".green
+        end
     elsif input == "title" || input == "Title"
         movie = create_movie_by_title
-        Favorite.create(user_id: $currUser.id, movie_id: movie.id)
-        system "clear"
-        puts "Movie added to favorites!".green
+        if Favorite.find_by(user_id: $currUser.id, movie_id: movie.id)
+            puts "You already have that movie in your favorites!".cyan
+        else
+            Favorite.create(user_id: $currUser.id, movie_id: movie.id)
+            system "clear"
+            puts "Movie added to favorites!".green
+        end
     else
         system "clear"
         puts "Invalid input please try again from the menu.".red
