@@ -456,6 +456,17 @@ def clear_all_favorites
     end
 end
 
+def display_titles_of_all_movies_currently_favorited
+    count = 0
+    system "clear"
+    Movie.all.each do |movie|
+        count += 1
+        puts "#{count}) ~~~~~~~~~~~~".colorize(:color => :black, :background => :green)
+        puts movie.title.green
+        puts ""
+    end
+end
+
 def confirm_password
     puts "Enter your password to confirm identity:".cyan
     password = STDIN.noecho(&:gets).chomp
@@ -596,8 +607,9 @@ def main_menu
         puts "4. List your favorite movies".cyan
         puts "5. Find a movie and view its poster in your default browser".cyan
         puts "6. Find a movie and view its website in your default browser".cyan
-        puts "7. To visit the ANALYTICS MENU".cyan
-        puts "8. To visit the ACCOUNT MENU".cyan
+        puts "7. To view all movies that are currently favorited by any user".cyan
+        puts "8. To visit the ANALYTICS MENU".cyan
+        puts "9. To visit the ACCOUNT MENU".cyan
         puts "Enter 'exit' to close the program.".light_blue
         input = gets.chomp
         if input == "1"
@@ -623,6 +635,8 @@ def main_menu
         elsif input == "6"
             view_website
         elsif input == "7"
+            display_titles_of_all_movies_currently_favorited
+        elsif input == "8"
             temp = analytics_menu
             if temp == "exit"
                 puts "Goodbye!".green
@@ -630,7 +644,7 @@ def main_menu
             else
                 system "clear"
             end
-        elsif input == "8"
+        elsif input == "9"
             temp = account_menu
             if temp == "exit"
                 puts "Goodbye!".green
