@@ -288,10 +288,10 @@ end
 
 def view_poster
     system "clear"
-    puts "Which movie poster would you like to see?"
+    puts "Which movie poster would you like to see?".cyan
     movie = find_movie_by_title
     if movie.poster == "N/A"
-        puts "Sorry this movie does not have a poster on IMDb"
+        puts "Sorry this movie does not have a poster on IMDb".red
     else
         Launchy.open(movie.poster)
         puts "Opening...".cyan
@@ -299,11 +299,11 @@ def view_poster
 end
 
 def view_website
-    system "clear"
-    puts "Which movie website would you like to see?"
+    system "clear".cyan
+    puts "Which movie website would you like to see?".cyan
     movie = find_movie_by_title
     if movie.website == "N/A"
-        puts "Sorry this movie does not have a website listed on IMDb"
+        puts "Sorry this movie does not have a website listed on IMDb".red
     else
         Launchy.open(movie.website)
         puts "Opening...".cyan
