@@ -1,41 +1,64 @@
 # OMDb Command Line Application - Matt Gahrns
 
 Welcome to my project. The purpose of this application is to be able to quickly look up movies and receive IMDb info about them.
-You can also save movies to a list of favorites that you can view.
+You can also save movies to a list of favorites that you can view. These are only two small features of the app, but are the base.
 
 ## Schema
 
 ### User
 
-```create_table "users", force: :cascade do |t|
+```ruby
+  create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password"
-  end```
+  end
+```
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
+### Movie
 
-  **Resource:** [Easy Access APIs](https://github.com/learn-co-curriculum/easy-access-apis)
+```ruby
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.string "year"
+    t.string "rated"
+    t.string "released"
+    t.string "runtime"
+    t.string "genre"
+    t.string "director"
+    t.string "writer"
+    t.string "actors"
+    t.string "plot"
+    t.string "language"
+    t.string "country"
+    t.string "awards"
+    t.string "poster"
+    t.string "metascore"
+    t.string "imdbrating"
+    t.string "imdbvotes"
+    t.string "imdbid"
+    t.string "dvd"
+    t.string "boxoffice"
+    t.string "production"
+    t.string "website"
+  end
+```
 
-### Option Two - Command Line CRUD App
+### Favorite
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate models for your runner and CLI interface.
+```ruby
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+  end
+```
 
-### Brainstorming and Proposing a Project Idea
-
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. In example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
-
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
+## User Stories
+1. As a user, I want to be able to save to and retrieve a list of my favorite movies.
+2. As a user, I want to search for a movie by title or
+IMDb id to quickly get IMDb information about that movie.
+3. As a user, I should be able to see all the movies that have been favorited by all the users.
+4. As a user, I want to be able to search my favorites
+by IMDb star rating and box office earnings.
 
 ## Instructions
 
@@ -55,9 +78,4 @@ Projects need to be approved prior to launching into them, so take some time to 
 7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
 
 ---
-### Common Questions:
-- How do I turn off my SQL logger?
-```ruby
-# in config/environment.rb add this line:
-ActiveRecord::Base.logger = nil
-```
+
