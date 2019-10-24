@@ -299,7 +299,7 @@ def view_poster
 end
 
 def view_website
-    system "clear".cyan
+    system "clear"
     puts "Which movie website would you like to see?".cyan
     movie = find_movie_by_title
     if movie.website == "N/A"
