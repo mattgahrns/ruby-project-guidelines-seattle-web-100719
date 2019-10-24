@@ -23,13 +23,13 @@ def find_movie_by_title
 end
 
 def find_movie_by_title_and_display
-    puts "Enter the title of the movie you wish to find:"
+    puts "Enter the title of the movie you wish to find:".cyan
     title = gets.chomp
     url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
     response = HTTParty.get(url)
     res = response.parsed_response
     while res["Title"] == nil do
-        puts "Movie not found, please try again!"
+        puts "Movie not found, please try again!".red
         title = gets.chomp
         url = "http://www.omdbapi.com/?t=#{title}&apikey=5b27a2ad"
         response = HTTParty.get(url)
