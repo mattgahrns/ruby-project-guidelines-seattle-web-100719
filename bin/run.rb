@@ -175,9 +175,13 @@ def add_movie_to_favorites
     if input == "IMDb id" || input == "id"
         movie = create_movie_by_imdb_id
         Favorite.create(user_id: $currUser.id, movie_id: movie.id)
+        system "clear"
+        "Movie added to favorites!".green
     elsif input == "title" || input == "Title"
         movie = create_movie_by_title
         Favorite.create(user_id: $currUser.id, movie_id: movie.id)
+        system "clear"
+        puts "Movie added to favorites!".green
     else
         system "clear"
         puts "Invalid input please try again from the menu.".red
@@ -415,7 +419,7 @@ def clear_favorite
             temp_movie = Movie.find_by(title: input)
             temp_favorite = Favorite.find_by(movie_id: temp_movie.id)
             Favorite.delete(temp_favorite.id)
-            puts "Movie deleted from favorites".green
+            puts "Your favorites list has been deleted".green
             if Favorite.where(movie_id: temp_movie.id) ==  []
                 Movie.delete(temp_movie.id)
             end
@@ -429,7 +433,27 @@ def clear_favorite
 end
 
 def clear_all_favorites
-
+    system "clear"
+    if confirm_password
+        puts "Are you sure you want to delete all your favorites? (yes/no):".cyan
+        input = gets.chomp
+        if input == "yes" || input == "Yes" || input == "y" || input == "Y"
+            Favorite.where(user_id: $currUser.id).delete_all
+            puts "Movie deleted from favorites".green
+            Movie.all.each do |movie|
+                if Favorite.where(movie_id: movie.id) ==  []
+                    Movie.delete(movie.id)
+                end
+            end
+        elsif input == "no" || input == "No" || input == "n" || input == "N"
+            puts "Aborting...".red
+        else
+            puts "Invalid input, aborting... try again from menu.".red
+        end
+    else
+        puts "Too many log in attempts, signing out...".red
+        return "exit"
+    end
 end
 
 def confirm_password
