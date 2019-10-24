@@ -1,12 +1,16 @@
-# Module One Final Project Guidelines
+# OMDb Command Line Application - Matt Gahrns
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+Welcome to my project. The purpose of this application is to be able to quickly look up movies and receive IMDb info about them.
+You can also save movies to a list of favorites that you can view.
 
-For your final project, we'll be building a Command Line database application.
+## Schema
 
-## Project Requirements
+### User
 
-### Option One - Data Analytics Project
+```create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+  end```
 
 1. Access a Sqlite3 Database using ActiveRecord.
 2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
