@@ -252,7 +252,7 @@ def display_curr_favorites
     puts ""
     puts "#{$currUser.username}'s favorites:".green
     if Favorite.where("user_id = ?", $currUser.id) == []
-        puts "You have no favorites. To add favorites enter '4' at the main menu.".red
+        puts "You have no favorites. To add favorites enter '3' at the main menu.".red
     end
     Favorite.where("user_id = ?", $currUser.id).each do |fav|
         Movie.where("id = ?", fav.movie_id).each do |movie|
@@ -270,7 +270,7 @@ def display_curr_favorites_titles_only
     puts ""
     puts "#{$currUser.username}'s favorites (titles only):".green
     if Favorite.where("user_id = ?", $currUser.id) == []
-        puts "You have no favorites. To add favorites enter '4' at the main menu.".red
+        puts "You have no favorites. To add favorites enter '3' at the main menu.".red
     end
     Favorite.where("user_id = ?", $currUser.id).each do |fav|
         Movie.where("id = ?", fav.movie_id).each do |movie|
@@ -407,6 +407,7 @@ end
 
 def clear_favorite
     system "clear"
+    temp_movie = nil
     if confirm_password
         puts "Enter title of movie you wish to unfavorite:".cyan
         input = gets.chomp
@@ -415,8 +416,8 @@ def clear_favorite
             temp_favorite = Favorite.find_by(movie_id: temp_movie.id)
             Favorite.delete(temp_favorite.id)
             puts "Movie deleted from favorites".green
-            if !Favorite.where(temp_movie.id = movie_id)
-                puts "No more favs for this movie"
+            if Favorite.where(movie_id: temp_movie.id) ==  []
+                Movie.delete(temp_movie.id)
             end
         else
             puts "Unable to find that movie in your favorites!".red
