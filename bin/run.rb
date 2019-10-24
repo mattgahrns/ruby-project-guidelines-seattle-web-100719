@@ -525,7 +525,7 @@ def analytics_menu
         puts "1. Show your favorite movies that earned over $100 million at the box office".cyan
         puts "2. Show your favorite movies that have over n stars on IMDb".cyan
         puts "3. Show the most popular (favorited) movie overall".cyan
-        puts "4. Show the movie with the most IMDb star ratings".cyan
+        puts "4. Show the movie with the most IMDb star ratings that is also any user's favorite".cyan
         puts "Enter 'back' to return to main menu or 'exit' to close the program.".light_blue
         input = gets.chomp
         if input == "1"
