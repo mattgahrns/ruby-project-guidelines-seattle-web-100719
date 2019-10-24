@@ -419,7 +419,7 @@ def clear_favorite
             temp_movie = Movie.find_by(title: input)
             temp_favorite = Favorite.find_by(movie_id: temp_movie.id)
             Favorite.delete(temp_favorite.id)
-            puts "Your favorites list has been deleted".green
+            puts "Movie deleted from favorites".green
             if Favorite.where(movie_id: temp_movie.id) ==  []
                 Movie.delete(temp_movie.id)
             end
@@ -439,7 +439,7 @@ def clear_all_favorites
         input = gets.chomp
         if input == "yes" || input == "Yes" || input == "y" || input == "Y"
             Favorite.where(user_id: $currUser.id).delete_all
-            puts "Movie deleted from favorites".green
+            puts "Your favorites list has been deleted".green
             Movie.all.each do |movie|
                 if Favorite.where(movie_id: movie.id) ==  []
                     Movie.delete(movie.id)
