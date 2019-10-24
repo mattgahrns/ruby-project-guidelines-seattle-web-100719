@@ -1,7 +1,7 @@
 # OMDb Command Line Application - Matt Gahrns
 
-Welcome to my project. The purpose of this application is to be able to quickly look up movies and receive IMDb info about them.
-You can also save movies to a list of favorites that you can view. These are only two small features of the app, but are what it is built off of.
+Welcome to my project. The purpose of this application is to be able to quickly look up movies and receive IMDb info about them from the OMDb API.
+You can also save movies to a list of favorites that you can view. These are only two small features of the app, but are the backbone of it.
 
 ## Schema
 
@@ -64,7 +64,9 @@ by IMDb star rating and box office earnings.
 
 1. Fork and clone this repository.
 2. Open the repository in your IDE of choice.
-3. Run ```ruby bin/run.rb``` in the console to start the application.
+3. Run ```bundle install``` in console to insure you have all the required gems.
+4. Run ```rake db:migrate``` in console to create the schema.
+5. Run ```ruby bin/run.rb``` in the console to start the application.
 
 ## Contributors Guide
 
@@ -75,6 +77,16 @@ If you wish to conribute to the project you may do so by following the proceedin
 4. Submit any changes you've made to your branch as a pull request on the master to be reviewed.
 
 ## License
+
+[MIT License](https://opensource.org/licenses/MIT)
+
+### Copyright 2019 Matt Gahrns
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
