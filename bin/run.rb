@@ -175,7 +175,7 @@ def add_movie_to_favorites
     if input == "IMDb id" || input == "id"
         movie = create_movie_by_imdb_id
         if Favorite.find_by(user_id: $currUser.id, movie_id: movie.id)
-            puts "You already have that movie in your favorites!".cyan
+            puts "You already have that movie in your favorites!".red
         else
             Favorite.create(user_id: $currUser.id, movie_id: movie.id)
             system "clear"
@@ -184,7 +184,7 @@ def add_movie_to_favorites
     elsif input == "title" || input == "Title"
         movie = create_movie_by_title
         if Favorite.find_by(user_id: $currUser.id, movie_id: movie.id)
-            puts "You already have that movie in your favorites!".cyan
+            puts "You already have that movie in your favorites!".red
         else
             Favorite.create(user_id: $currUser.id, movie_id: movie.id)
             system "clear"
