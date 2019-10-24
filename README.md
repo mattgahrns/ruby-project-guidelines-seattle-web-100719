@@ -3,6 +3,10 @@
 Welcome to my project. The purpose of this application is to be able to quickly look up movies and receive IMDb info about them from the OMDb API.
 You can also save movies to a list of favorites that you can view. These are only two small features of the app, but are the backbone of it.
 
+View a quick slideshow about this project [here](https://docs.google.com/presentation/d/1MicooN080jp1OyUfrAND_W1y2Uw9F3w1LA5xfuMr5kg/edit?usp=sharing).
+
+View a quick video walkthrough of some of the features [here](https://youtu.be/uZzmdREMrLk).
+
 ## Schema
 
 ### User
